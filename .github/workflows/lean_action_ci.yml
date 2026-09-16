@@ -1,0 +1,25 @@
+name: Lean Action CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+
+      - name: Check that the build is sorry-free
+        run: |
+          if grep -rn --include='*.lean' -E '\bsorry\b|\bsorryAx\b' ConvexUniformHoneycombs ConvexUniformHoneycombs.lean; then
+            echo "::error::found 'sorry' in the sources"
+            exit 1
+          fi
+          echo "no 'sorry' in the sources"

@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: >-
+  If you cite this formalization, please cite the specific archived version you checked, not
+  the repository in general. Each release has its own version DOI; see the "Archival" section
+  in README.md.
+title: >-
+  convex-uniform-honeycombs-lean: Lean 4 formalization of the pen-and-paper core of "The 28
+  convex uniform honeycombs: a completeness theorem"
+abstract: >-
+  A Lean 4 / Mathlib formalization of the human-checked mathematics around the finite
+  certificates of the paper: the two-tier arithmetic (the irrationality of arctan sqrt 2 in
+  degrees by Niven's theorem, and the split of every lattice angle equation into two integer
+  equations), the closed-form tail lemmas A, B and E with the interleaving proved for every real
+  q >= 4, Identity I2, the forcing and rebasing arguments of the pattern section, and the
+  constants, seam and box-rigidity steps of the periodization section. The enumerations are
+  exact certificates in the verification artifact and are not the target here. Every result is
+  sorry-free and native_decide-free, depending at most on propext, Classical.choice and
+  Quot.sound. The toolchain is pinned by lean-toolchain and lake-manifest.json, so lake exe
+  cache get && lake build reproduces the checked build.
+type: software
+authors:
+  - family-names: Càllisto
+    given-names: Mario
+    orcid: https://orcid.org/0009-0009-1215-3278
+license: Apache-2.0
+repository-code: https://github.com/scala-tessella/convex-uniform-honeycombs-lean
+keywords:
+  - Lean 4
+  - Mathlib
+  - convex uniform honeycombs
+  - uniform partitions of 3-space
+  - Niven's theorem
+  - formalization
