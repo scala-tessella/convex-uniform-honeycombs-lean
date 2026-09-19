@@ -3,7 +3,7 @@
 All notable changes to this formalization are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [0.1.0] — 2026-09-19
 
 Initial development: the pen-and-paper core of *The 28 convex uniform honeycombs: a completeness
 theorem*, formalized in Lean 4 over Mathlib (toolchain v4.33.1, Mathlib v4.33.1).

@@ -100,8 +100,16 @@ Mathlib revision, so the build a reader reproduces is the build that was checked
 
 ## Archival
 
-Not yet deposited. Once released, cite the version DOI of the release you checked, not the
-all-versions concept DOI.
+Deposited on Zenodo as a supplement to the paper record. **Cite the version DOI of the release you
+checked**, not the all-versions concept DOI, which always resolves to whatever is newest:
+
+| Version | DOI |
+|---|---|
+| 0.1.0 | recorded in the first commit after the tag |
+
+Zenodo assigns a release's version DOI at the moment that release is published, so it cannot be present
+in the tree that release archives: the `CITATION.cff` inside a deposit carries no version DOI. The version
+DOI is recorded in this table, and in `CITATION.cff` on the main branch, in the first commit after the tag.
 
 The companion computational artifact, deliberately separate from this formalization, is
 [convex-uniform-honeycombs](https://github.com/scala-tessella/convex-uniform-honeycombs).

@@ -24,6 +24,12 @@ authors:
     orcid: https://orcid.org/0009-0009-1215-3278
 license: Apache-2.0
 repository-code: https://github.com/scala-tessella/convex-uniform-honeycombs-lean
+url: https://github.com/scala-tessella/convex-uniform-honeycombs-lean
+version: 0.1.0
+date-released: '2026-09-19'
+# Version DOI of this release — the one to cite. Zenodo mints it when the release is published, so
+# it cannot be present in the tree that release archives; the version DOI, and the concept DOI that
+# comes with the first deposit, are recorded here in the first commit after the tag.
 keywords:
   - Lean 4
   - Mathlib
