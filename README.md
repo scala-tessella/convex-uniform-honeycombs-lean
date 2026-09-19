@@ -1,5 +1,7 @@
 # Lean 4 formalization for *The 28 convex uniform honeycombs: a completeness theorem*
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22849889.svg)](https://doi.org/10.5281/zenodo.22849889)
+
 A Lean 4 + Mathlib formalization of the pen-and-paper mathematics of
 
 > M. Càllisto, *The 28 convex uniform honeycombs: a completeness theorem* (2026).
@@ -101,11 +103,13 @@ Mathlib revision, so the build a reader reproduces is the build that was checked
 ## Archival
 
 Deposited on Zenodo as a supplement to the paper record. **Cite the version DOI of the release you
-checked**, not the all-versions concept DOI, which always resolves to whatever is newest:
+checked**, not the all-versions concept DOI
+[10.5281/zenodo.22849888](https://doi.org/10.5281/zenodo.22849888) — the latter always resolves to
+whatever is newest:
 
 | Version | DOI |
 |---|---|
-| 0.1.0 | recorded in the first commit after the tag |
+| 0.1.0 | [10.5281/zenodo.22849889](https://doi.org/10.5281/zenodo.22849889) |
 
 Zenodo assigns a release's version DOI at the moment that release is published, so it cannot be present
 in the tree that release archives: the `CITATION.cff` inside a deposit carries no version DOI. The version

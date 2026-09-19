@@ -30,6 +30,14 @@ date-released: '2026-09-19'
 # Version DOI of this release — the one to cite. Zenodo mints it when the release is published, so
 # it cannot be present in the tree that release archives; the version DOI, and the concept DOI that
 # comes with the first deposit, are recorded here in the first commit after the tag.
+doi: 10.5281/zenodo.22849889
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22849888
+    description: Concept DOI (all versions) — always resolves to the newest release
+  - type: doi
+    value: 10.5281/zenodo.22849889
+    description: Version DOI of release 0.1.0
 keywords:
   - Lean 4
   - Mathlib
