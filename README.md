@@ -24,8 +24,9 @@ sibling of [minimal-uniformity-lean](https://github.com/scala-tessella/minimal-u
 
 | file | contents |
 | --- | --- |
-| `ConvexUniformHoneycombs/TwoTier.lean` | `cos 2α = -1/3` for `α = arctan √2`; **Proposition 3.1**, `α` irrational in degrees by Niven's theorem, and the two-tier split of a lattice angle sum; the arithmetic of **Corollary 5.4** (the octet support `(8, 6)` is forced) |
-| `ConvexUniformHoneycombs/Tails.lean` | **Lemmas A, B and E** of Section 4.2 from the closed-form antiprism dihedrals: `a₃q(q) > 90°`, `a₃₃(q) < 180°`, and `2 a₃q(q) + a₃₃(r) ≠ 360°` for all integers `q, r ≥ 4`, via the interleaving `2 sin(π/4q) < tan(π/2q) < 2 sin(π/(4q-2))` proved for every real `q ≥ 4` |
+| `ConvexUniformHoneycombs/TwoTier.lean` | `cos 2α = -1/3` for `α = arctan √2`; **Proposition 3.1**, `α` irrational in degrees by Niven's theorem, and the two-tier split of a lattice angle sum; the arithmetic of **Corollary 5.5** (the octet support `(8, 6)` is forced) |
+| `ConvexUniformHoneycombs/Tails.lean` | **Lemmas A, B and E** of Section 4.2 from the closed-form antiprism dihedrals: `a₃q(q) > 90°`, `a₃₃(q) < 180°`, and `2 a₃q(q) + a₃₃(r) ≠ 360°` for all integers `q, r ≥ 4`, via the interleaving `2 sin(π/4q) < tan(π/2q) < 2 sin(π/(4q-2))` proved for every real `q ≥ 4`; the **tail corridors** of the uncapped corona fixpoint (Section 4.1): `a₃q` antitone and `a₃₃` monotone, so `a₃q(q) ∈ (π/2, a₃q(301)]` and `a₃₃(q) ∈ [a₃₃(301), π)` for `q ≥ 301`, and `π - 2π/p ∈ [π - 2π/501, π)` for `p ≥ 501` |
+| `ConvexUniformHoneycombs/Separation.lean` | **Lemma 5.2**, the separation constant of the species search: the altitude of the tetrahedral corner — the vertex-to-opposite-side distance of the equilateral spherical triangle of side `60°` — is exactly `α = arctan √2`, proved on explicit coordinates of the corner figure (`sin²` of the altitude is `2/3 = sin² α`) |
 | `ConvexUniformHoneycombs/Icosahedral.lean` | **Identity I2**: `θ₁ + θ₂ + θ₃ = 360°` from the three exact cosines, by the radical products and the injectivity of the cosine on `[0, π]` |
 | `ConvexUniformHoneycombs/Forcing.lean` | **Theorem 5.9 / Lemma 6.9**, forcing along the edges of a connected graph; **Lemma 6.7**, the rebasing invariance of a canonical (orbit-minimal) fingerprint |
 | `ConvexUniformHoneycombs/Periodization.lean` | **Remark 6.2**, the constants chain; the seam step (box coordinates congruent modulo the lattice differ by `-1`, `0` or `1`); **Lemma 6.5**, fundamental-box rigidity |
@@ -51,6 +52,17 @@ theorem lemma_E (q r : ℕ) (hq : 4 ≤ q) (hr : 4 ≤ r) : 2 * a3q q + a33 r �
 -- the interleaving, for every real q ≥ 4 (the paper's grid to q = 20000 is superseded)
 theorem interleave_left  {q : ℝ} (hq : 4 ≤ q) : 2 * sin (π / (4 * q)) < tan (π / (2 * q))
 theorem interleave_right {q : ℝ} (hq : 4 ≤ q) : tan (π / (2 * q)) < 2 * sin (π / (4 * q - 2))
+
+-- the tail corridors of the uncapped corona fixpoint, for every real q ≥ 301 and p ≥ 501
+theorem a3q_tail_corridor {q : ℝ} (hq : 301 ≤ q) : π / 2 < a3q q ∧ a3q q ≤ a3q 301
+theorem a33_tail_corridor {q : ℝ} (hq : 301 ≤ q) : a33 301 ≤ a33 q ∧ a33 q < π
+theorem prism_tail_corridor {p : ℝ} (hp : 501 ≤ p) :
+    π - 2 * π / 501 ≤ π - 2 * π / p ∧ π - 2 * π / p < π
+
+-- Lemma 5.2: the separation constant is the tetrahedral altitude, and it is α
+theorem tet_altitude_sin_sq :
+    (crossProduct tetA tetB ⬝ᵥ tetV) ^ 2 / (crossProduct tetA tetB ⬝ᵥ crossProduct tetA tetB) = 2 / 3
+theorem tet_altitude : arcsin (√(2 / 3)) = alpha
 
 -- Identity I2
 theorem identity_I2 {θ₁ θ₂ θ₃ : ℝ}
@@ -84,7 +96,7 @@ hypotheses — the division of labour of its sibling. Specifically:
   them from the coordinate model; here they are the definitions of `a3q` and `a33`.
 - **The three cosines of Identity I2**, certified on exact `ℚ(√5)` models in the artifact; they
   enter as hypotheses, with the obtuseness of the angles.
-- **The degree-1 spherical cover lemma** (Lemma 5.2) and the descriptor lemma, which need a
+- **The degree-1 spherical cover lemma** (Lemma 5.3) and the descriptor lemma, which need a
   covering-space degree and polyhedral geometry that Mathlib does not have.
 - **The periodization theorem itself** (Theorem 6.1) beyond its arithmetic, seam and rigidity
   steps, and the coherence lemma (Lemma 6.6), whose geometric content is the periodization

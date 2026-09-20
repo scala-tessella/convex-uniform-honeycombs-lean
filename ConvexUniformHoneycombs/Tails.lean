@@ -263,4 +263,64 @@ theorem lemma_E (q r : ℕ) (hq : 4 ≤ q) (hr : 4 ≤ r) :
     rw [this] at h1
     linarith
 
+section Corridors
+
+/-!
+### The tail corridors
+
+The corona fixpoint of Section 4.1 runs over an uncapped participant pool: every antiprism `A_q`
+with `q > 300` enters through the two *corridors* `(π/2, a₃q(301)]` and `[a₃₃(301), π)`, and every
+prism `P_p` with `p > 500` through `[π - 2π/501, π)` (its lateral dihedral) and the value `π/2`
+(its base). The corridors contain the dihedrals of every tail cell because `a₃q` is antitone and
+`a₃₃` monotone in `q`, and `π - 2π/p` is monotone in `p`.
+-/
+
+/-- `a₃q` is antitone on `[4, ∞)`: `tan(π/2q)` decreases with `q`, so the cosine `-tan(π/2q)/√3`
+increases and the arccosine decreases. -/
+theorem a3q_antitone {q r : ℝ} (hq : 4 ≤ q) (hqr : q ≤ r) : a3q r ≤ a3q q := by
+  have hr : 4 ≤ r := hq.trans hqr
+  have htan : tan (π / (2 * r)) ≤ tan (π / (2 * q)) := by
+    rcases hqr.lt_or_eq with h | h
+    · exact (tan_lt_tan_of_nonneg_of_lt_pi_div_two (pi_div_two_q_pos hr).le
+        (by linarith [pi_div_two_q_le hq, pi_pos])
+        (div_lt_div_of_pos_left pi_pos (by linarith) (by linarith))).le
+    · rw [h]
+  unfold a3q
+  apply arccos_le_arccos
+  have hs : (0 : ℝ) < √3 := by positivity
+  rw [neg_div, neg_div, neg_le_neg_iff]
+  exact div_le_div_of_nonneg_right htan hs.le
+
+/-- `a₃₃` is monotone on `[4, ∞)`: `cos(π/q)` increases with `q`, so the cosine `(1 - 4 cos(π/q))/3`
+decreases and the arccosine increases. -/
+theorem a33_monotone {q r : ℝ} (hq : 4 ≤ q) (hqr : q ≤ r) : a33 q ≤ a33 r := by
+  have hcos : cos (π / q) ≤ cos (π / r) := by
+    apply cos_le_cos_of_nonneg_of_le_pi (div_pos pi_pos (by linarith)).le
+    · exact div_le_self pi_pos.le (by linarith)
+    · exact div_le_div_of_nonneg_left pi_pos.le (by linarith) hqr
+  unfold a33
+  apply arccos_le_arccos
+  linarith
+
+/-- **The antiprism base corridor.** For every real `q ≥ 301`, `a₃q(q) ∈ (π/2, a₃q(301)]`. -/
+theorem a3q_tail_corridor {q : ℝ} (hq : 301 ≤ q) : π / 2 < a3q q ∧ a3q q ≤ a3q 301 :=
+  ⟨a3q_gt_pi_div_two (by linarith), a3q_antitone (by norm_num) hq⟩
+
+/-- **The antiprism lateral corridor.** For every real `q ≥ 301`, `a₃₃(q) ∈ [a₃₃(301), π)`. -/
+theorem a33_tail_corridor {q : ℝ} (hq : 301 ≤ q) : a33 301 ≤ a33 q ∧ a33 q < π :=
+  ⟨a33_monotone (by norm_num) hq, a33_lt_pi (by linarith)⟩
+
+/-- **The prism lateral corridor.** For every real `p ≥ 501`, the lateral dihedral `π - 2π/p` of
+`P_p` lies in `[π - 2π/501, π)`. -/
+theorem prism_tail_corridor {p : ℝ} (hp : 501 ≤ p) :
+    π - 2 * π / 501 ≤ π - 2 * π / p ∧ π - 2 * π / p < π := by
+  constructor
+  · have : 2 * π / p ≤ 2 * π / 501 :=
+      div_le_div_of_nonneg_left (by positivity) (by norm_num) hp
+    linarith
+  · have : 0 < 2 * π / p := div_pos (by positivity) (by linarith)
+    linarith
+
+end Corridors
+
 end ConvexUniformHoneycombs

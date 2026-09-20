@@ -24,7 +24,7 @@ Angles are kept in radians: `15°` is `π / 12` and a target of `c · 360°` is 
 * `ConvexUniformHoneycombs.two_tier_split`: a lattice sum equal to a rational multiple of `π` has
   zero total `α`-charge, and its rational parts add up exactly.
 * `ConvexUniformHoneycombs.barlow_support`: the area equation over tetrahedra and octahedra has
-  the unique solution `(8, 6)` (Corollary 5.4).
+  the unique solution `(8, 6)` (Corollary 5.5).
 -/
 
 namespace ConvexUniformHoneycombs
@@ -83,7 +83,7 @@ theorem two_tier_split {ι : Type*} (s : Finset ι) (a b : ι → ℤ) (c : ℚ)
   have h2 : ((∑ i ∈ s, a i : ℤ) : ℝ) = ((12 * c : ℚ) : ℝ) := by push_cast; exact hA
   exact_mod_cast h2
 
-/-- **Corollary 5.4, the arithmetic.** In `(rational part, α-charge)` coordinates a tetrahedral
+/-- **Corollary 5.5, the arithmetic.** In `(rational part, α-charge)` coordinates a tetrahedral
 corner has excess `(360°, -6)` and an octahedral corner `(-360°, 8)`; corners tiling the sphere
 (excess `(720°, 0)`) with `a` tetrahedra and `b` octahedra force `-6a + 8b = 0` and
 `360a - 360b = 720`, whose only solution is `(a, b) = (8, 6)`. -/

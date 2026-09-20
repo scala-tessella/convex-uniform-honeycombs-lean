@@ -1,4 +1,5 @@
 import ConvexUniformHoneycombs.TwoTier
+import ConvexUniformHoneycombs.Separation
 import ConvexUniformHoneycombs.Tails
 import ConvexUniformHoneycombs.Icosahedral
 import ConvexUniformHoneycombs.Forcing
