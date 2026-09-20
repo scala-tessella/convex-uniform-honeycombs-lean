@@ -13,8 +13,8 @@ abstract: >-
   equations), the closed-form tail lemmas A, B and E with the interleaving proved for every real
   q >= 4 and the tail corridors of the uncapped corona fixpoint, the separation constant of the
   species search as the exact value arctan sqrt 2 (the tetrahedral altitude), Identity I2, the
-  forcing and rebasing arguments of the pattern section, and the constants, seam and
-  box-rigidity steps of the periodization section. The enumerations are
+  forcing and rebasing arguments of the pattern section, and the constants, the box
+  representative, the field identification and the box-rigidity step of the periodization section. The enumerations are
   exact certificates in the verification artifact and are not the target here. Every result is
   sorry-free and native_decide-free, depending at most on propext, Classical.choice and
   Quot.sound. The toolchain is pinned by lean-toolchain and lake-manifest.json, so lake exe

@@ -3,6 +3,26 @@
 All notable changes to this formalization are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+The periodization section brought in line with the paper's v0.6–v0.7 proof, in which condition (P) is a
+direct reduction to the box (two clauses) and the seam walk is gone.
+
+### Changed
+
+- `Periodization.lean`: `constants_table` replaces `constants_chain` — the three lines of Remark 7.2 as it now
+  stands (`covB + max|τ| < R_per`, `covB + 1 ≤ R_per − 1/2`, `R_per − 1/2 + 1 < R_per + 8/5`); the
+  earlier chain with the `2.6` reach described a step that condition (G) removed. `seam_coefficient` is
+  kept for the record but no longer corresponds to a step of the proof.
+
+### Added
+
+- `Periodization.lean`: the box representative of condition (P) — `roundHalfUp`, `remainder_mem`
+  (remainders in `[-1/2, 1/2)`), `remainder_add_int` (the same representative for a whole lattice
+  orbit); and `entries_eq_periodization_on_ball`, the field identification: from the two clauses of (P),
+  the ball entries and the vertices of the periodization within the ball coincide, with the developed
+  star field the periodized one there — the step the referee's last two corrections were about.
+
 ## [0.2.0] — 2026-09-20
 
 The pen-and-paper additions of the paper's v0.5 revision.

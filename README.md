@@ -29,7 +29,7 @@ sibling of [minimal-uniformity-lean](https://github.com/scala-tessella/minimal-u
 | `ConvexUniformHoneycombs/Separation.lean` | **Lemma 5.2**, the separation constant of the species search: the altitude of the tetrahedral corner — the vertex-to-opposite-side distance of the equilateral spherical triangle of side `60°` — is exactly `α = arctan √2`, proved on explicit coordinates of the corner figure (`sin²` of the altitude is `2/3 = sin² α`) |
 | `ConvexUniformHoneycombs/Icosahedral.lean` | **Identity I2**: `θ₁ + θ₂ + θ₃ = 360°` from the three exact cosines, by the radical products and the injectivity of the cosine on `[0, π]` |
 | `ConvexUniformHoneycombs/Forcing.lean` | **Theorem 5.9 / Lemma 6.9**, forcing along the edges of a connected graph; **Lemma 6.7**, the rebasing invariance of a canonical (orbit-minimal) fingerprint |
-| `ConvexUniformHoneycombs/Periodization.lean` | **Remark 6.2**, the constants chain; the seam step (box coordinates congruent modulo the lattice differ by `-1`, `0` or `1`); **Lemma 6.5**, fundamental-box rigidity |
+| `ConvexUniformHoneycombs/Periodization.lean` | **Remark 7.2**, the constants table; the box representative of **condition (P)** (rounding half up: remainders in `[-1/2, 1/2)`, constant on lattice orbits); the field identification from the two clauses of (P); **Lemma 7.4**, fundamental-box rigidity (the seam lemma of earlier versions kept for the record) |
 
 Everything is `sorry`-free and `native_decide`-free: each result depends only on `propext`,
 `Classical.choice` and `Quot.sound`; the forcing theorem depends on `Quot.sound` alone and box
@@ -78,7 +78,21 @@ theorem eq_of_forcing (hG : G.Connected) (hforce : ∀ u v, G.Adj u v → f u = 
 theorem canonical_smul (e : X → E) (x : X) (h : G) :
     canonical (G := G) e (h • x) = canonical (G := G) e x
 
--- Lemma 6.5: lattice-periodic honeycombs agreeing on a fundamental box are equal
+-- Remark 7.2: the three lines of the constants table from the coverage hypothesis (C)
+theorem constants_table {covB maxT rper : ℝ} (hT : 0 ≤ maxT) (hC : covB + maxT + 3 / 2 ≤ rper) :
+    covB + maxT < rper ∧ covB + 1 ≤ rper - 1 / 2 ∧ rper - 1 / 2 + 1 < rper + 8 / 5
+
+-- condition (P): rounding half up leaves remainders in [-1/2, 1/2), the same for a whole lattice orbit
+theorem remainder_mem (c : ℝ) : -1 / 2 ≤ c - roundHalfUp c ∧ c - roundHalfUp c < 1 / 2
+theorem remainder_add_int (c : ℝ) (k : ℤ) : (c + k) - roundHalfUp (c + k) = c - roundHalfUp c
+
+-- the field identification: from the two clauses of (P), the ball entries are the periodization's vertices
+theorem entries_eq_periodization_on_ball (E B V₀ : Set X) (σ : X → S)
+    (down : ∀ p ∈ E ∩ B, ∃ v ∈ V₀, ∃ l : L, p = l +ᵥ v ∧ σ p = l +ᵥ σ v)
+    (up : ∀ v ∈ V₀, ∀ l : L, l +ᵥ v ∈ B → l +ᵥ v ∈ E ∧ σ (l +ᵥ v) = l +ᵥ σ v) :
+    E ∩ B = {p | ∃ v ∈ V₀, ∃ l : L, p = l +ᵥ v} ∩ B
+
+-- Lemma 7.4: lattice-periodic honeycombs agreeing on a fundamental box are equal
 theorem eq_of_periodic_of_agree_on_box {H₁ H₂ B : Set C}
     (h₁ : ∀ (l : L) (c : C), c ∈ H₁ → l +ᵥ c ∈ H₁) (h₂ : ∀ (l : L) (c : C), c ∈ H₂ → l +ᵥ c ∈ H₂)
     (hbox : ∀ c : C, ∃ l : L, l +ᵥ c ∈ B) (hagree : ∀ c ∈ B, c ∈ H₁ ↔ c ∈ H₂) : H₁ = H₂
