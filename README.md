@@ -1,6 +1,6 @@
 # Lean 4 formalization for *The 28 convex uniform honeycombs: a completeness theorem*
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22863544.svg)](https://doi.org/10.5281/zenodo.22863544)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22868902.svg)](https://doi.org/10.5281/zenodo.22868902)
 
 A Lean 4 + Mathlib formalization of the pen-and-paper mathematics of
 
@@ -147,6 +147,7 @@ whatever is newest:
 
 | Version | DOI |
 |---|---|
+| 0.4.0 | [10.5281/zenodo.22868902](https://doi.org/10.5281/zenodo.22868902) |
 | 0.3.0 | [10.5281/zenodo.22863544](https://doi.org/10.5281/zenodo.22863544) |
 | 0.2.0 | [10.5281/zenodo.22858003](https://doi.org/10.5281/zenodo.22858003) |
 | 0.1.0 | [10.5281/zenodo.22849889](https://doi.org/10.5281/zenodo.22849889) |

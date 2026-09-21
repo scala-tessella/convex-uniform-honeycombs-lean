@@ -5,6 +5,8 @@ All notable changes to this formalization are documented here. The format follow
 
 ## [0.4.0] — 2026-09-21
 
+Archived as [doi:10.5281/zenodo.22868902](https://doi.org/10.5281/zenodo.22868902) — the version DOI to cite.
+
 The pen-and-paper addition of the paper's v0.9 revision: the Euclidean core of the cell rigidity lemma.
 
 ### Added
