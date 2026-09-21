@@ -30,6 +30,7 @@ sibling of [minimal-uniformity-lean](https://github.com/scala-tessella/minimal-u
 | `ConvexUniformHoneycombs/Icosahedral.lean` | **Identity I2**: `θ₁ + θ₂ + θ₃ = 360°` from the three exact cosines, by the radical products and the injectivity of the cosine on `[0, π]` |
 | `ConvexUniformHoneycombs/Forcing.lean` | **Theorem 5.9 / Lemma 6.9**, forcing along the edges of a connected graph; **Lemma 6.7**, the rebasing invariance of a canonical (orbit-minimal) fingerprint |
 | `ConvexUniformHoneycombs/Periodization.lean` | **Remark 7.2**, the constants table; the box representative of **condition (P)** (rounding half up: remainders in `[-1/2, 1/2)`, constant on lattice orbits); the field identification from the two clauses of (P); **Lemma 7.4**, fundamental-box rigidity (the seam lemma of earlier versions kept for the record) |
+| `ConvexUniformHoneycombs/CellRigidity.lean` | The Euclidean core of the **cell rigidity lemma** (Section 6.1): a linear isometry fixing or reversing the direction of a segment and mapping each of two interior directions into its own plane on its own side is the identity or the reflection in the perpendicular bisector plane — the geometric half of the lemma; its three finite facts about the thirteen cells are certificates in the artifact (`core-cells.txt`) |
 
 Everything is `sorry`-free and `native_decide`-free: each result depends only on `propext`,
 `Classical.choice` and `Quot.sound`; the forcing theorem depends on `Quot.sound` alone and box
@@ -96,6 +97,15 @@ theorem entries_eq_periodization_on_ball (E B V₀ : Set X) (σ : X → S)
 theorem eq_of_periodic_of_agree_on_box {H₁ H₂ B : Set C}
     (h₁ : ∀ (l : L) (c : C), c ∈ H₁ → l +ᵥ c ∈ H₁) (h₂ : ∀ (l : L) (c : C), c ∈ H₂ → l +ᵥ c ∈ H₂)
     (hbox : ∀ c : C, ∃ l : L, l +ᵥ c ∈ B) (hagree : ∀ c ∈ B, c ∈ H₁ ↔ c ∈ H₂) : H₁ = H₂
+
+-- the Euclidean core of the cell rigidity lemma: an isometry preserving a segment and two planes through
+-- it with their sides is the identity or the reflection in the perpendicular bisector plane
+theorem wedge_isometry (L : V →ₗᵢ[ℝ] V) {d p₁ p₂ : V} (hd : d ≠ 0) (hp₁ : p₁ ≠ 0) (hp₂ : p₂ ≠ 0)
+    (hp₁d : ⟪p₁, d⟫ = 0) (hp₂d : ⟪p₂, d⟫ = 0) (hedge : L d = d ∨ L d = -d)
+    (hplane₁ : ∃ a b : ℝ, L p₁ = a • d + b • p₁) (hside₁ : 0 < ⟪L p₁, p₁⟫)
+    (hplane₂ : ∃ a b : ℝ, L p₂ = a • d + b • p₂) (hside₂ : 0 < ⟪L p₂, p₂⟫)
+    (hspan : ∀ v : V, ∃ a b c : ℝ, v = a • d + b • p₁ + c • p₂) :
+    (∀ v, L v = v) ∨ (∀ v, L v = bisectorReflection d v)
 ```
 
 ## What is deliberately not formalized
@@ -110,8 +120,10 @@ hypotheses — the division of labour of its sibling. Specifically:
   them from the coordinate model; here they are the definitions of `a3q` and `a33`.
 - **The three cosines of Identity I2**, certified on exact `ℚ(√5)` models in the artifact; they
   enter as hypotheses, with the obtuseness of the angles.
-- **The degree-1 spherical cover lemma** (Lemma 5.3) and the descriptor lemma, which need a
-  covering-space degree and polyhedral geometry that Mathlib does not have.
+- **The degree-1 spherical cover lemma** (Lemma 5.3), which needs a covering-space degree that
+  Mathlib does not have; and the three finite facts of the cell rigidity lemma (face roles, bisector
+  mirrors, transitivity on edge triples of the thirteen cells), which are certificates in the artifact
+  — only the lemma's Euclidean core is formalized here.
 - **The periodization theorem itself** (Theorem 6.1) beyond its arithmetic, seam and rigidity
   steps, and the coherence lemma (Lemma 6.6), whose geometric content is the periodization
   theorem's.

@@ -3,6 +3,21 @@
 All notable changes to this formalization are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.4.0] — 2026-09-21
+
+The pen-and-paper addition of the paper's v0.9 revision: the Euclidean core of the cell rigidity lemma.
+
+### Added
+
+- `CellRigidity.lean`: the cell rigidity lemma of the paper (Section 6.1, the correction of the fifth
+  revision — a placed core cell is determined by its type, one edge, the two face germs there and their
+  roles) rests on three finite facts certified in the artifact and on one piece of Euclidean geometry,
+  proved here: a linear isometry that fixes or reverses the direction `d` of a segment and maps each of two
+  interior directions `p₁, p₂` (perpendicular to `d`, spanning the space with it) into its own plane
+  `span {d, pᵢ}` on its own side (`⟪L pᵢ, pᵢ⟫ > 0`) is the identity or the reflection in the plane
+  perpendicular to `d` (`wedge_isometry`, from `interior_fixed`, `eq_of_fixes_three` and the explicit
+  `bisectorReflection` with its involution).
+
 ## [0.3.0] — 2026-09-20
 
 The periodization section brought in line with the paper's v0.6–v0.7 proof, in which condition (P) is a

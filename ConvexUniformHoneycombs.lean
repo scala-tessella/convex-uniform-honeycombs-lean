@@ -4,3 +4,4 @@ import ConvexUniformHoneycombs.Tails
 import ConvexUniformHoneycombs.Icosahedral
 import ConvexUniformHoneycombs.Forcing
 import ConvexUniformHoneycombs.Periodization
+import ConvexUniformHoneycombs.CellRigidity
